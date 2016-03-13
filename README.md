@@ -4,17 +4,18 @@
 
 http://bilgisayarcilik.github.io/
 
-This is a FreeDOS disturbition. This is useful for computers of DOS.
+This is a FreeDOS disturbition.
 
-This is live CD.
+FreeDOS B licensed under GNU GPLv2 or any later version.
 
-boot.img is boot disk of FreeDOS B. If you can't boot from CD, you should use this image.
+This CD image is live CD. boot.img is boot disk of FreeDOS B. If you can't boot from CD, you should use this image.
 
-# Included software:
+# Included Software:
 
 * FreeDOS
 * Bilgisayarcılık DOS Araçları
-* XFDISK, ZeroFill
+* XFDISK
+* ZeroFill
 * Syslinux
 * XOSL
 * OpenGEM
