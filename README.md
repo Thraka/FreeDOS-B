@@ -6,7 +6,7 @@ http://bilgisayarcilik.github.io/
 
 This is a FreeDOS disturbition.
 
-FreeDOS B licensed under GNU GPLv2 or any later version.
+Softwares of FreeDOS B licensed various licenses.
 
 This CD image is live CD. boot.img is boot disk of FreeDOS B. If you can't boot from CD, you should use this image.
 
