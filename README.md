@@ -10,6 +10,16 @@ This is live CD.
 
 boot.img is boot disk of FreeDOS B. If you can't boot from CD, you should use this image.
 
+# Included software:
+
+* FreeDOS
+* Bilgisayarcılık DOS Araçları
+* XFDISK, ZeroFill
+* Syslinux
+* XOSL
+* OpenGEM
+* VGAPaint 386
+
 ## System Requirements:
 
 80386 or later
