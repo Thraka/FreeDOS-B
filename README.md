@@ -4,9 +4,11 @@
 
 http://bilgisayarcilik.github.io/
 
-This is a FreeDOS disturbition.
+This is a FreeDOS disturbition. This is useful for computers of DOS.
 
-This is live CD. boot.img is boot disk of FreeDOS B. If you can't boot from CD, you should use this image.
+This is live CD.
+
+boot.img is boot disk of FreeDOS B. If you can't boot from CD, you should use this image.
 
 ## System Requirements:
 
