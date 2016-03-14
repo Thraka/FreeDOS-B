@@ -1,0 +1,119 @@
+==================================
+VGAPaint 386 Help For DPaint Users
+==================================
+
+It's obvious that VP386 was designed as a DPaint IV clone.  If not, you might
+want to look again.  It's not quite the same (I don't have a manual with
+a Figure 8.24 that has text written in Wingdings) but it's useful for those
+who do not have the PC version of DPaint.  (Like me).
+
+Please excuse any errors, I haven't used DPaint in a looong time...
+
+"DPaint" here is used to refer to the Amiga version of DPaint IV; some of
+this may not be applicable to other versions or PC versions of DPaint.
+
+
+Keyboard equivalents
+--------------------
+[same]	same in DPaint and VP386
+[vp]	in VP386 only
+[lim]	limited similarity
+[dif]	different
+
+space	[lim]	abort, only certain drawing operations
+b	[same]	rectangle brush pickup
+c	[same]	outline circle
+C	[same]	filled circle
+d	[same]	continuous draw
+e	[same]	ellipse draw
+E	[same]	filled ellipse draw
+f	[same]	fill tool
+h	[same]	brush: halve size
+j	[same]	swap current and spare pictures
+K	[lim]	clear picture/frame, not anim
+m	[same]	magnify
+p	[same]	palette requester
+P	[same]	arrange requester
+q	[same]	curve draw (quadric?)
+r	[same]	outline rectangle
+R	[same]	filled rectangle
+s	[same]	spotted draw
+u	[same]	undo
+v	[same]	vector (line)
+x	[same]	flip brush horizontally
+X	[same]	double brush width
+y	[same]	flip brush vertically
+Y	[same]	double brush height
+z	[same]	rotate brush right 90 degrees
+Z	[same]	scale brush (stretch)
+1	[same]	anim: previous frame
+2	[same]	anim: next frame
+3	[same]	anim: goto frame
+4	[same]	anim: loop forward
+5	[same]	anim: play forward once
+6	[same]	anim: play pingpong
+shift-1 [vp]	anim: add frame before
+shift-2	[vp]	anim: add frame after
+shift-3	[vp]	anim: delete current frame
+ctrl-J	[same]	copy current picture to spare
+ctrl-R	[same]	range requester
+ctrl-X	[dif]	brush: cycle between 9 handle positions, instead of DP's 5
+F1	[same]	brush: matte mode
+F2	[same]	brush: color mode
+F3	[same]	brush: opaque "replace" mode
+F10	[lim]	hide/show tools, titlebar and tools together always
+TAB	[same]	start/stop color cycling
+.	[lim]	change to dot brush
+,	[same]	eyedropper (pick)
+[,]	[same]	change foreground color
+{,}	[same]	change background color
+<,>	[lim]	change zoom level
+
+
+basic operating differences
+---------------------------
+* DPaint can create a full-color brush plus matte (i.e. 256 color plus matte
+  in 8-bit mode).  VP386 can only create a 255 color brush+matte, and the
+  matte must be a palette index.
+
+* DPaint cannot hold two animations in memory (one is always the "spare
+  picture") -- VP386 treats both spare and current picture identically.
+
+* More of DPaint's functions work when a tool is being used than VP386's.
+  In particular, you cannot scroll while a tool is in use.
+
+* In DPaint, you can access the menu while in full screen mode by right
+  clicking on the very top line of the display.  This does not work in VP386.
+  (Anyone else find DPaint's "feature" annoying like I do?)
+
+* DPaint is capable of cycling-in colors which do not exist in the
+  palette, VP386 cannot.
+
+* DPaint stores the brush as it is picked up, and uses this throughout a
+  brush's manipulations, while VP386 only retains one copy in memory.
+  For example, halving a brush and then doubling it in DPaint gives the
+  original brush.  Doing this in VP386 gives a brush with reduced resolution.
+  Personally, I like it this way.
+
+* DPaint animations are stored in memory as differences between frames, VP386
+  as compressed key frames.  This can result in rapid out-of-memory
+  situations for one of the programs that would not happen on the other.
+
+* Many of the functions that fall under DPaint's palette requester actually
+  exist only in VP386's Arrange requester.
+
+==============================
+
+Note to the suspicious/explanation to the confused:
+
+Absolutely no code/data has been taken from DPaint for use in VP386.  All
+the code is original.  Interface ideas have been "borrowed" (okay, copied)
+but no copyrighted material has been taken.
+
+==============================
+
+DeluxePaint "DPaint" is a trademark of Electronic Arts.  If not, it's
+somebody's trademark!
+
+
+

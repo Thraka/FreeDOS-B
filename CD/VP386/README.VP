@@ -1,0 +1,368 @@
+==============================================
+VGAPAINT 386 RELEASE 1.4 *FINAL* RELEASE NOTES
+==============================================
+
+Project Finalized Warning
+-------------------------
+This is the final release of VGAPaint 386.  There will be no more major
+releases unless I am bored.  You are, as fellow users and programmers,
+of course welcome to build on the source code.  I am available for comments
+at (uleea05@umail.ucsb.edu) if you want help in any way, either as a
+user or a code hacker.
+
+Obtain the supplemental drivers, extensions, and source from:
+
+	http://www.concentric.net/~Psilon/index.html
+
+
+
+Requirements
+------------
+
+* 2-button mouse
+* 386 or better
+* DOS 3.3 or better, Windows 95, or "DOS-like" environment
+* 2Mb of memory (under DOS, more under Windows or other emulation
+  environments)
+* Mode 13h compatible VGA
+* 100% compatible PC
+
+Recommended for running:
+* 486 or better
+* 4Mb of memory under DOS/Windows 3.1, 8Mb under Win95
+* VL-bus or PCI-bus register-compatible VESA SVGA
+* VESA 2.0 support with 32-bit protected mode bank switching or linear
+  frame buffer (preferred) capabilities.
+* 3-button mouse
+* DOS or Windows 95
+
+Recommended for recompiling:
+* Pentium or better (or lots of free time).  A 486DX2-66 won't cut it
+  anymore.
+* 4Mb of memory under DOS, 8MB under Windows
+* VL-bus or PCI-bus register-compatible VESA SVGA
+* QEMM 7.5+, for the inevitable quick-reboots necessary
+* BRIEF editor
+* WATCOM C 9.5 or higher
+* Patience
+
+
+Keyboard shortcuts
+------------------
+TAB		toggle colorcycling/interrupt capture
+.		Change to dot brush
+[,]		Cycle foreground color forward/backward
+{,}		Cycle backward color forward/backward
+space		Stop polygon line drawing, finish filled polygon
+F1		Use single-color brush mode
+F2		Use opaque brush mode
+F3		Use matte brush mode (transparent)
+1		Anim: previous frame
+2		Anim: next frame
+shift-1		Anim: add new frame before current one
+shift-2		Anim: add new frame after current one
+shift-3		Anim: delete current frame
+p		Palette mixer requester
+P		Palette arranger requester
+u		Undo
+,		Pick (choose color from picture)
+j		Swap spare with current picture
+CTRL-J		Copy spare to current picture
+ALT-J		Browse in-memory picture list
+CTRL-R		Range requester
+K		Clear picture
+s		Spotted (dotted) draw
+d		Continuous draw
+v		Line draw
+q		Curve draw
+r		Rectangle draw
+R		Filled rectangle draw
+c		Circle draw
+C		Filled circle draw
+e		Ellipse draw
+E		Filled ellipse draw
+f		Fill tool
+m		Magnify on current position
+M		Magnify tool
+Arrow keys	Shift viewport position
+<, >		Change magnification level
+x		Flip brush horizontally
+y		Flip brush vertically
+z		Rotate brush right
+Z		Free scale brush
+h		Halve brush size
+H		Double brush size
+CTRL-X		Cycle handle of brush between 9 positions
+F8		B/W Tone control
+Shift-F8	RGB Gamma control
+F10		Toggle menus
+Shift-F10	Switch between right and top toolbar orientation
+Ctrl-F10	When in the top toolbar orientation, use "splitscreen" mode
+		(tools at bottom)
+PgDn		Load file
+PgUp		Save PCX file
+Shift-PgDn	Load RAW 320x200 file
+Shift-PgUp	Save RAW 320x200 file
+Ctrl-PgUp	Save .COM program file
+Shift-Ctrl-PgDn	Load IFF file
+Shift-Ctrl-PgUp	Save IFF file
+Esc		Quit
+1/Y		Trinary requesters: Left option, usually Yes or Ok
+2/M		Trinary requesters: Middle option, the 'Maybe' one
+3/N/ESC		Trinary requesters: Right option, usually No or Cancel
+Scroll Lock	While on, mouse scrolling is disabled
+
+
+The T key no longer works unless you are in debug mode.
+
+
+Assign System
+-------------
+VP386 includes an AmigaDOS-style assign system that allows you to
+associate multiletter drive names with DOS directory paths, like
+the way the SUBST command allows you to assign a drive letter to
+a path, except that you can use Pictures: instead of P:.  For
+instance, if you have Pictures: assigned to D:\Downloads\Pictures,
+the filename "Pictures:\athena.pcx" is automatically translated
+into "D:\Downloads\Pictures\athena.pcx".  Note that
+"Pictures:athena.pcx" and "Pictures:\athena.pcx" both refer to the
+same file; the backslash after the colon is ignored.
+
+VP: is automatically assigned by VP386 to point to the directory
+that VP386 was started in.  You can add extra assigns through the
+VP386.INI file:
+
+>
+>[Assigns]
+>
+>Assign = "Pictures: D:\Downloads\Pictures"
+>Assign = "D-Temp: D:Temp"
+>
+
+Animation
+---------
+Animation rates are based on 1/65536ths of a second.  For this reason
+the animation rate slider shows a hex number as well as an FPS rate.
+The hex number, when divided into 65536, gives the number of frames
+per second.
+
+VP386 actually times animations by 1/1193181ths of a second, however.
+Animations vary slightly in speed (about 1/37000th of a sec on my
+machine) depending on the compression ratio of the frames and the
+computer the animation is playing on; however, VP386 will try to keep
+the animation playing at its intended speed.  Two hex numbers show up
+in the lower right, like "0001198c(0001187c)."  The second number is
+the intended number of ticks per frame (1193181 ticks/sec) while the
+first is the "last frame" time.  If your machine, at any point, is
+unable to keep up with the intended animation speed, the first number
+will increase beyond the intended rate -- it will drop if VP386 is
+able to "catch up" to the animation later on.  Note that the first
+number is nearly always larger than the second number, since VP386
+is always a little behind where it should be; but that's okay, since
+the frame rate is as close as it can get.
+
+If your machine takes longer than 5/91ths of a second (64k ticks) to
+decompress and display a frame, VP386's timer will be off and your
+animation will probably play much slower than a) intended and b) your
+machine is capable of doing.
+
+
+Shelling Out
+------------
+Clicking on the icon in the upper right (Amiga users may recognize it) kicks
+the user into a DOS shell.  The prompt will note "[VP386]" while you have
+shelled out, to remind you. You can do nearly anything you want here, but
+remember that VP386 is still running in the background, so don't load TSRs
+or anything else that might disturb VP386. The EXIT command returns you to
+VP386.
+
+If you allocated memory for a simple/VESA capture, or chose Advanced capture,
+you can do a screen capture.  The capture operation only produces valid
+results on VGA screens.  Hit the Print Screen key to capture, or a joystick
+button if you enabled any of them.  The PrtSc button may not be effective,
+however, if the program completely takes over the keyboard.
+
+While in the shell, type VPSTAT for information about VP386's capture status.
+
+
+A Quick User Interface Note
+---------------------------
+OS/2, Windows, and Macintosh users are used to having menus always present at
+the top of the screen.  VP386's menus are Amiga-style, however - hold down
+the right mouse button at the title bar to display the menus.
+
+The tools interface on the right is modeled after DeluxePaint's, which I
+consider to be one of the most functional interfaces ever seen in a paint
+program.  However, there is one difference: you do not choose a filled tool
+by clicking on the lower right triangle.  You double-click the icon instead.
+
+Fields, also known as editboxes to some people, cannot be select-dragged like
+traditional fields - you only have a cursor.  Left and right arrow keys move
+the cursor left and right; Del deletes the character under the cursor;
+Backspace deletes the character to the left of the cursor.  Enter ends the
+edit operation.  Home and End move you to the start and end of the text.
+
+The keyboard is utterly useless in controlling the requesters.
+
+Requesters may be dragged by the title bar.
+
+
+Printing
+--------
+To print, you must have VPPRINT.INI in your VP386 directory.  Copy the file
+VPP_EP24.INI if you have an Epson 9/24 pin compatible printer; copy the file
+VPP_IW.INI if you have an Apple ImageWriter II.  If you don't have either,
+you will have to make the driver yourself by editing the VPPRINT.INI file.
+
+The printer driver needs to be gamma corrected before you can print graphics
+at correct shades.  The gamma is adjusted in the print requester by moving
+the slider; gammas less than 1.0 lighten the picture, and gammas greater than
+1.0 darken the picture.  A 1.0 gamma uses a linear transform.
+
+If the printer cannot print a solid black (i.e. you can still discern dots)
+a lower gamma is useless; however, the gamma is very effective on printers
+where the dots are too close (i.e. a 50% grey is actually darker due to
+oversized dots).  The ideal printer is one which produces non-overlapping,
+exactly positioned square "dots."  If you happen to have a Linotronic, you're
+in luck.
+
+
+================================
+KNOWN BUGS/DEFICIENCIES IN VP386
+================================
+* VESA Capture does not restore the read bank after capturing, and games
+  tend to mess up the screen after a capture (especially Star Trek: A Final
+  Unity).
+
+  Update: After a second look at the code, it turns out VESA Capture is a
+	  100% hack.  It will not work on 99% of non-S3 cards.
+
+* Some mouse drivers support signed coordinates for the pointer boundaries
+  while others do not.  If your mouse driver does, and you are having
+  problems moving the mouse pointer all over the screen, try the -mb
+  parameter; Win95 in window mode requires this.  Note that you may not
+  be able to scroll the picture with the mouse.
+
+* IFF writing support is half-completed (color reduction not implemented)
+  and IFF read support does not understand masks or ACBM pictures.
+
+* Advanced capture off interrupt can take upwards of a third of a second
+  IN TIMER INTERRUPT.  This causes some programs to lose sync between audio
+  and video and others to hang (Trump Castle 3 does this).
+
+* VP386 messes up printing if you tell it to send information directly to
+  the printer (usually by entering 'lpt1' into the field).  The result is
+  a lot of garbage and about 50 formfeeds.  (Oh boy!)  The solution is
+  to write the printout to a FILE and typing this at the DOS prompt:
+
+	copy /b <filename> lpt1
+
+  The /b is necessary, or you will get intermittent errors during printouts
+  caused by linefeed translation in DOS.
+
+* In low memory situations, VP386 may refuse to Undo, display menus, or
+  even allow you to exit, since the exit requester requires memory.  In
+  these cases, use the emergency Ctrl-Break exit.
+
+* Some video cards are incompatible with certain 'specialty' modes (read
+  hacked) used in VP386.  Here is the list of features, from safest to
+  most dangerous:
+
+	------ most safe -----
+	Direct palette writes
+	320x200 Mode X
+	640x400 Mode X paged hardware scrolled
+	320x200 double height hardware scrolled
+	Blanked video test
+	Advanced capture
+	Hires 640x200 16-color mode
+	--- most dangerous ---
+
+  Note that your card may support certain 'dangerous' features while
+  breaking on some 'safe' features.  The worst offenders are old 256K/512K
+  video cards, especially some of the 'pioneer' ones.  VL/PCI bus cards
+  tend to be OK with the majority of these modes.
+
+  Direct palette writes are extremely common, and almost any heavily
+  graphical game will use them.
+
+  Mode X is also extremely common, and any game using 320x400 or higher on
+  a standard VGA must use Mode X.  In fact, Win95 uses a Mode X screen
+  when it starts up!
+
+* The code to the Easter egg is hidden under compression.  It shouldn't be
+  hard for hackers to figure out how to activate it though.  It is
+  implemented such that the user must specifically enable it through the
+  command line, so it won't affect the average user.  *hint hint*
+
+
+=======================
+KNOWN INCOMPATIBILITIES
+=======================
+
+* The ATI Mach64 video chip used in the Intel Atlantis motherboard is
+  incompatible with the hires 640x200 mode in VP386.
+
+
+=============================
+DISCLAIMER, LEGAL MUMBO-JUMBO
+=============================
+
+VGAPaint 386 is Copyright (C) 1995-1997 by Avery Lee.  All rights
+reserved.  Both VP386 and the VGAPaint 386 Supplementary Extensions
+are free software; you may distribute and/or modify them under the
+terms of the GNU General Public License.  It should have been included
+in the archive(s); if not, write to the Free Software Foundation, Inc.,
+675 Mass Ave., Cambridge, MA 02139, USA.
+
+Any trademarks, registered trademarks, etc. not specifically mentioned as
+being so are recognized here.  No offense or infringement is intentional.
+
+Any patent and/or copyright violations in this package are certainly
+unintentional.
+
+
+===============
+REPLY TO SENDER
+===============
+
+If you want to contact the author, please send EMail to:
+
+	uleea05@umail.ucsb.edu
+
+Please tag the message with a subject including "VP" or "VP386" so I can
+easily route the message to a separate folder for easy reference.
+
+Be forewarned, however, that this project is basically dead.  I might fix
+a bug or two for you if you ask, but that's about it.  This code was written
+so long ago I don't remember all the nuances of the various subsections and
+even get slightly nauseous looking at the code.  C'est la vie.
+
+If you have a bug/incompatibility to report, please document it this way:
+
+	* specific action that causes the bug (i.e. swap 16 colors)
+	* a description of your system, including memory, OS, CPU,
+	  any applicable TSRs, video card, etc.
+	* symptoms of the bug, more than "page fault" would be nice
+	* explicit instructions on how to reproduce the bug
+	* any other important information
+	* the EIP number in the DOS/4GW bug report is worthless,
+	  unfortunately - I don't keep old versions, unlike other people
+
+
+
+===============
+WHERE TO GET IT
+===============
+
+If you didn't get the full package, and you don't know where to get it,
+try this location:
+
+	http://www.concentric.net/~Psilon/index.html
+
+
+Well, that's about it.  Bye!
+
+-Avery Lee (Psilon@concentric.net)
+
+
