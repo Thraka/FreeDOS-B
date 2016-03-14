@@ -8,7 +8,7 @@ This is a FreeDOS disturbition.
 
 Softwares of FreeDOS B licensed under various licenses.
 
-This CD image is live CD. boot.img is boot disk of FreeDOS B. If you can't boot from CD, you should use this image.
+This CD image is live CD. The floppy boot.img is boot disk of FreeDOS B. If you can't boot from CD, you should use this image.
 
 # Included Software:
 
