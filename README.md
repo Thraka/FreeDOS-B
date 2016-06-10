@@ -1,6 +1,6 @@
 # FreeDOS B
 
-2016 2016 [Ercan Ersoy](https://github.com/ercanersoy/)
+2016 [Ercan Ersoy](https://github.com/ercanersoy/)
 
 https://sourceforge.net/projects/freedos-b
 
