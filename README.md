@@ -31,4 +31,4 @@ CD/DVD/Blu-Ray Driver
 
 ## Known issues:
 
-* Turkish F keyboard not supported
+* Turkish F keyboard not supported.
