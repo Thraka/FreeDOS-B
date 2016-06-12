@@ -33,10 +33,6 @@ VGA (for OpenGEM and VGAPaint 386)
 
 Mouse (for OpenGEM and VGAPaint 386)
 
-VGA or higher (for OpenGEM and VGAPaint 386)
-
-Mouse (for OpenGEM and VGAPaint 386)
-
 ## Known issues:
 
 * Turkish F keyboard not supported.
