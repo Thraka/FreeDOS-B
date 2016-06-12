@@ -25,13 +25,13 @@ The CD image FreeDOS B.iso is live CD. The floppy boot.img is boot disk of FreeD
 
 80386 or later
 
-4 MB RAM
+4 MB RAM or higher
 
 CD/DVD/Blu-Ray Driver
 
-VGA (for Open GEM and VGAPaint 386)
+VGA or higher (for OpenGEM and VGAPaint 386)
 
-Mouse (for Open GEM and VGAPaint 386)
+Mouse (for OpenGEM and VGAPaint 386)
 
 ## Known issues:
 
