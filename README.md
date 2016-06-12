@@ -29,6 +29,10 @@ The CD image FreeDOS B.iso is live CD. The floppy boot.img is boot disk of FreeD
 
 CD/DVD/Blu-Ray Driver
 
+VGA (for Open GEM and VGAPaint 386)
+
+Mouse (for Open GEM and VGAPaint 386)
+
 ## Known issues:
 
 * Turkish F keyboard not supported.
