@@ -2,8 +2,6 @@
 
 2016 [Ercan Ersoy](https://github.com/ercanersoy/)
 
-https://sourceforge.net/projects/freedos-b
-
 This is a FreeDOS disturbition.
 
 Softwares of FreeDOS B licensed under various licenses.
