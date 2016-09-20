@@ -8,7 +8,7 @@ Softwares of FreeDOS B licensed under various licenses.
 
 The CD image FreeDOS B.iso is live CD. The floppy boot.img is boot disk of FreeDOS B. If you can't boot from CD, you should use this image.
 
-# Included Software:
+## Included Software:
 
 * FreeDOS
 * Bilgisayarcılık DOS Araçları
