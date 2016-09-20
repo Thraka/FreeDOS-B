@@ -12,7 +12,11 @@ The CD image FreeDOS B.iso is live CD. The floppy boot.img is boot disk of FreeD
 
 * FreeDOS
 * Bilgisayarcılık DOS Araçları
+* XFDISK
 * ZeroFill
+* Syslinux
+* XOSL
+* OpenGEM
 * VGAPaint 386
 
 ## System Requirements:
