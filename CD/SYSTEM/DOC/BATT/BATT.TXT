@@ -1,0 +1,80 @@
+
+  BATT - Show battery status
+  Copyright (c) 1997-2005 BTTR Software
+  [Under `MODIFIED' BSD LICENSE]
+
+
+                        T A B L E  O F  C O N T E N T S
+  袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴袴
+
+  1  INTRODUCTION
+  2  LICENSE & DISCLAIMER
+  3  SYSTEM REQUIREMENTS
+  4  INSTALLATION
+  5  USAGE
+  6  TECHNICAL SUPPORT & UPDATES
+  7  ADDITIONAL INFORMATION
+
+
+  1                         I N T R O D U C T I O N
+  컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
+
+  BATT is a tiny program to display information about current power and
+  battery status (remaining charge and operational time), which may be
+  critical in mobile environments but not easily available when working under
+  DOS, even that easily available through the Advanced Power Management BIOS
+  interface. It is designed to run under plain DOS and may not work under
+  MS Windows.
+
+
+  2                  L I C E N S E  &  D I S C L A I M E R
+  컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
+
+  This program is free software; you can redistribute it and/or modify it
+  under the terms of the `MODIFIED' BSD LICENSE.
+
+  See `legal.txt' for details.
+
+
+  3                   S Y S T E M  R E Q U I R E M E N T S
+  컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
+
+  (*) Intel i8086 microprocessor (or compatibles)
+
+  (*) Microsoft MS-DOS 2.0 (or compatibles)
+
+  (*) Advanced Power Management BIOS version 1.0 or higher
+
+
+  4                         I N S T A L L A T I O N
+  컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
+
+  (*) Decompress the archive with, e.g., Info-ZIP UnZip to an empty directory.
+
+  (*) For your convenience, copy `BATT.EXE' to a directory on your search
+      path.
+
+
+  5                                U S A G E
+  컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
+
+  Run `BATT.EXE' to display information about the current power and battery
+  status of your machine.
+
+
+  6            T E C H N I C A L  S U P P O R T  &  U P D A T E S
+  컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
+
+  Please visit `http://www.bttr-software.de/' for any updates or further help.
+
+
+  7                A D D I T I O N A L  I N F O R M A T I O N
+  컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
+
+  BATT was created using Borland Turbo Pascal 7.01 and Borland MAKE 3.6.
+
+  This product uses the aPACK executable compressor,
+  Copyright (C) 1997-2000 by Joergen Ibsen, All Rights Reserved.
+  For more information, please visit: http://www.ibsensoftware.com/
+
+  컴컴컴컴컴컴컴컴컴컴컴컴컴컴� END OF DOCUMENT 컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴
