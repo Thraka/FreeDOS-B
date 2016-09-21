@@ -11,7 +11,7 @@ The CD image FreeDOS B.iso is live CD. The floppy boot.img is boot disk of FreeD
 ## Included Software:
 
 * FreeDOS
-* Bilgisayarcılık DOS Araçları
+* Bilgisayarcılık DOS Tools
 * XFDISK
 * ZeroFill
 * Syslinux
