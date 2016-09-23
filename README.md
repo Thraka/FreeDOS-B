@@ -35,8 +35,8 @@ The CD image FreeDOS B.iso is live CD. The floppy boot.img is boot disk of FreeD
 * 80386 or higher
 * 24 MB RAM or higher
 * PATA CD/DVD/Blu-Ray driver
-* VGA or higher (for Blocek and VGAPaint 386)
-* Mouse (for Blocek and VGAPaint 386)
+* VGA or higher (for Blocek that is in FreeDOS and VGAPaint 386)
+* Mouse (for Blocek that is in FreeDOS and VGAPaint 386)
 
 ## Known Issues
 
