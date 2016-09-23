@@ -8,7 +8,7 @@ Softwares of FreeDOS B licensed under various licenses.
 
 The CD image FreeDOS B.iso is live CD. The floppy boot.img is boot disk of FreeDOS B. If you can't boot from CD, you should use this image.
 
-## What's New:
+## What's New
 
 * New programs added. Some FreeDOS parts changed.
 * Programs' those haven't document on CD documents added.
@@ -17,7 +17,7 @@ The CD image FreeDOS B.iso is live CD. The floppy boot.img is boot disk of FreeD
 * New folder structure on CD.
 * Locale settings bug fixed.
 
-## Included Software:
+## Included Software
 
 * FreeDOS
 * BATT
@@ -30,15 +30,15 @@ The CD image FreeDOS B.iso is live CD. The floppy boot.img is boot disk of FreeD
 * flashrom
 * VGAPaint 386
 
-## System Requirements:
+## System Requirements
 
 * 80386 or higher
 * 24 MB RAM or higher
 * PATA CD/DVD/Blu-Ray driver
-* VGA or higher (for VGAPaint 386)
-* Mouse (for VGAPaint 386)
+* VGA or higher (for Blocek and VGAPaint 386)
+* Mouse (for Blocek and VGAPaint 386)
 
-## Known Issues:
+## Known Issues
 
 * Native SATA inferance not supported.
 * Turkish F keyboard not supported.
