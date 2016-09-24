@@ -40,5 +40,6 @@ The CD image FreeDOS B.iso is live CD. The floppy boot.img is boot disk of FreeD
 
 ## Known Issues
 
+* If booting on multi optical drive computer, empty drivers are caused question by operating system to you.
 * Native SATA inferance not supported.
 * Turkish F keyboard not supported.
