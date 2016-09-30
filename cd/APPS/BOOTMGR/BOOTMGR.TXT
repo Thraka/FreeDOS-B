@@ -1,0 +1,591 @@
+
+  BOOTMGR - multi-BOOT ManaGeR
+  Copyright (c) 1997-2008 BTTR Software
+  [Under `MODIFIED' BSD LICENSE]
+
+
+                        T A B L E  O F  C O N T E N T S
+  ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+  1  INTRODUCTION
+  2  LICENSE & DISCLAIMER
+  3  SYSTEM REQUIREMENTS
+  4  INSTALLATION
+     4.1  INSTALLATION OF `BOOTMGR.COM'
+     4.2  CHANGES TO BIOS SETUP
+     4.3  CONFIGURATION SCREEN
+     4.4  CONFIGURING BOOTMGR
+     4.5  REMOVING BOOTMGR
+     4.6  ADVANCED FEATURES
+  5  USAGE
+  6  TECHNICAL SUPPORT
+  7  VERSION HISTORY
+  8  ADDITIONAL INFORMATION
+
+
+  1                         I N T R O D U C T I O N
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The appearances of both, large hard disks, and a wide variety of operating
+  systems, encourage users to install multiple OSes on their computers. The
+  standard way of doing this is to create separate primary partitions on a
+  hard disk for each OS (some OSes may support more sophisticated, non-
+  standard solutions, like booting from extended partitions or loading from
+  DOS command prompt via a dedicated utility). Normally, only one of the
+  primary partitions is marked as active and can be booted. In order to boot
+  another OS, you have to run FDISK or a similar program to select the active
+  partition, and this is rather cumbersome.
+
+  To overcome this problem, you need to add a multi-boot feature to your
+  system, which allows you to change the active partition and select the
+  operating system just when you turn your PC on (or reboot it). The standard
+  boot loader in your PC's Master Boot Record just finds the active partition
+  and boots it. When you replace it with the BOOTMGR loader, a pseudo-
+  graphical menu is displayed on the screen and you can select (using cursor
+  keys) which OS you want to load. Or, if you don't press any key during some
+  defined time, your default OS will boot.
+
+  BOOTMGR offers you also an option to boot from a floppy diskette in your A:
+  drive. This is particularly useful if your System BIOS allows you to select
+  the boot device (as most 486 and newer BIOSes do). With this option, you are
+  still able to boot from a floppy without entering BIOS Setup, but don't need
+  to care whether the floppy is removed from the drive when you want to boot
+  from hard disk (and don't need to fear about so-called boot viruses).
+
+  If you have multiple hard disks with multiple operating systems, you can
+  also select to boot from the other disks, but this option works differently
+  than setting the first boot device to D: (HD2) in a typical BIOS Setup:
+  BOOTMGR cannot transparently interchange drive numbers. (Please note that
+  the label `D:' has nothing to do with drive letters assigned by DOS and
+  compatible systems.) Therefore, this option may not work with all operating
+  systems.
+
+  For maximum compatibility with existing software, the BOOTMGR loader fits
+  entirely in the Master Boot Record and does not occupy nor overwrite any
+  additional disk space (unlike some other boot managers). Of course, this
+  limited size doesn't allow defining user passwords, multiple configurations
+  with more than four primary partitions, and other non-standard (and
+  therefore sometimes dangerous) features.
+
+  The BOOTMGR startup menu (OS names, default OS and the time after which it
+  boots) can be configured with the installation and configuration utility
+  (`bootmgr.com'), which runs under DOS. Beside that, `bootmgr.com' allows you
+  to perform a few simple operations on partition tables: selecting the active
+  partition, rearranging entries and changing partition identifiers (e.g., for
+  hiding/unhiding them). In addition, you can erase all data in the initial
+  two tracks of a disk, clearing the partition table and the boot sector of
+  the first partition.
+
+
+  2                  L I C E N S E  &  D I S C L A I M E R
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  This program is free software; you can redistribute it and/or modify it
+  under the terms of the `MODIFIED' BSD LICENSE.  Please see `legal.txt'
+  for details.
+
+
+  3                   S Y S T E M  R E Q U I R E M E N T S
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  For the BOOTMGR boot loader:
+
+  (*) Intel i8086/88 microprocessor (or compatibles)
+
+  (*) Any video adapter that is set to 80x25 text mode at boot
+
+  (*) Hard disk accessible through standard BIOS INT 13h interface
+
+  For booting from partitions located beyond 8th Gbyte:
+
+  (*) BIOS supporting the extended (IBM/MS) INT 13h interface
+
+  For the install/configuration utility (`bootmgr.com'):
+
+  (*) Microsoft MS-DOS 3.30 (or compatibles)
+
+
+  4.1        I N S T A L L A T I O N  O F  `B O O T M G R . C O M'
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Decompress the complete archive (with e.g., Info-ZIP UnZip, PKWARE PKUNZIP,
+  or WinZip) into an empty directory. You are ready then to run `bootmgr.com',
+  the installation and configuration utility.
+
+  However, any modification to partition tables and the Master Boot Record
+  should be considered as potentially dangerous. In worst case, you may lose
+  access to the contents of your hard disk. Therefore, it is always a good
+  idea to create a `rescue diskette' as follows:
+
+  (*) Put a formatted, empty diskette in your A: drive.
+
+  (*) Make it bootable by transferring DOS system files (type `sys a:' at the
+      DOS command prompt).
+
+  (*) Copy `bootmgr.com' onto this diskette.
+
+  (*) You may wish to copy a few additional DOS tools onto it, e.g., FDISK and
+      FORMAT.
+
+  (*) Before configuring BOOTMGR, you should save a backup of your Master Boot
+      Record to this diskette, see paragraph 4.4.
+
+  You should run `bootmgr.com' from plain DOS, not from a MS Windows DOS box,
+  nor under any multitasking environment, because the install/configuration
+  utility needs exclusive, full direct access to your hard disks. A warning is
+  displayed if MS Windows or other multitasking environments are detected. In
+  Windows, either choose `Restart in MS-DOS mode' prior to running
+  `bootmgr.com', or reboot from the `rescue diskette' you made before.
+
+
+  4.2                C H A N G E S  T O  B I O S  S E T U P
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Typically, no changes to your BIOS Setup options are required for BOOTMGR.
+  However, you may prefer to:
+
+  (*) Disable `Virus Warning' option. BOOTMGR needs to update the partition
+      table(s) (in order to change the active partition) at every boot, which
+      causes the System BIOS to bring up a virus alert if this option is
+      enabled.
+
+  (*) Disable booting from diskette (set `First boot device' to `C:' or
+      `HDD0', or `Boot sequence' to `C:,A:' or similar). You may configure
+      BOOTMGR to boot from diskette upon request, and your system will boot
+      faster (no attempt to read a diskette) and safer (no danger of catching
+      a `boot virus' from an infected diskette accidentally left in the
+      drive).
+
+
+  4.3                C O N F I G U R A T I O N  S C R E E N
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The main screen of `bootmgr.com' consists of (from top to bottom): title bar
+  with copyright and version information,
+
+  ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+  ± BOOTMGR Version 07-APR-2006 - multi-BOOT ManaGeR           BTTR Software ±
+  ±±±²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²
+
+  hard disk parameters with partition table entries and active partition
+  marker,
+
+  ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+  ± Hard disk  1 (of  1), Size= 2067M, C:H:S= 524:128:63, Mode=LBA ±± active ±
+  ± #³ID³Type      ³  Size³ Start-LBA³Mode³Start-C:H:S³  End-C:H:S ²²  Part. ²
+  ±±±²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²±±²²²²²²²
+  ± 1³06³FAT16B    ³  503M³        63³CHS ³   0:  1: 1³ 127:127:63 ±± <-     ±
+  ± 2³06³FAT16B    ³  598M³   1032192³CHS ³ 128:  0: 1³ 279:127:63 ²²        ²
+  ± 3³0B³FAT32     ³  964M³   2257920³CHS ³ 280:  0: 1³ 524:127:63 ²²        ²
+  ± 4³00³empty     ³    0K³         0³CHS ³   0:  0: 0³   0:  0: 0 ²²        ²
+  ±±±²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²±±²²²²²²²
+
+  several input fields to set BOOTMGR's configuration and buttons
+  corresponding to installer's functions,
+
+  ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+  ± Menu     ±± Assoc. ±± Hide ±± Timeout ±±±±±±±±±  Save MBR   ±± Write MBR ±
+  ±±±²²²²²²²²²²±±²²²²²²²²±±²²²²²²±±²²²²²²²²²±±±±±±±±±²²²²²²²²²²²²²±±²²²²²²²²²²
+  ± <Floppy> ±± A:     ±±      ±± 03 sec. ±±±±±±±±± Restore MBR ±± Zap disk  ±
+  ± DOS      ²² 1   <- ²²      ²²±±²²²²²²²²²±±±±±±±±±²²²²²²²²²²²²²±±²²²²²²²²²²
+  ± Windows  ²² 3      ²² 12   ²²±±±±±±±±±±±±±±±±±± Change disk ±±±±±±±±±±±±±±
+  ±          ²²        ²²      ²²±±±±±±±±±±±±±±±±±±±±²²²²²²²²²²²²²±±±±±±±±±±±±
+  ±          ²²        ²²      ²²±±±±±±±±±±±±±±±±±±  Defaults   ±±   Quit    ±
+  ±±±²²²²²²²²²²±±²²²²²²²²±±²²²²²²±±±±±±±±±±±±±±±±±±±±²²²²²²²²²²²²²±±²²²²²²²²²²
+
+  and status/prompt line.
+
+  ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+  ± Keys: Tab Shift+Tab Ù     Alt+(K P M A H T S R C D W Z Q)           ±
+  ±±±²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²
+
+  Hard disk parameters include: current disk number (1, 2, ...), total number
+  of hard disks in your system, physical disk characteristics (size and
+  logical number of cylinders, heads and sectors accessible through standard
+  INT 13h interface) and access mode (`CHS' means standard INT 13h, `LBA'
+  means that IBM/MS INT 13h extensions are available).
+
+  Partition table entries are described with: hexadecimal type identifier,
+  partition type name (if known to BOOTMGR), size and placement on the disk
+  (initial and final cylinder, head and sector; initial logical block
+  address). Partitions accessible only with INT 13h extensions (i.e., placed
+  partially or entirely beyond 8th Gbyte) are marked as `LBA', other ones are
+  marked as `CHS'.
+
+  The `active Part.' field has two functions: when BOOTMGR is not installed,
+  it indicates (with an arrow) the active partition; when BOOTMGR is installed
+  on the disk, it indicates which partition is set active every time you
+  choose to boot from floppy or secondary hard disk.
+
+  The `Menu' field shows the names of BOOTMGR startup menu items. If no
+  BOOTMGR boot loader has been found in your Master Boot Record (or the
+  installed loader is incompatible with the installation/configuration program
+  because of a version mismatch), the menu is initialized with default names
+  for floppy diskette and next hard disk.
+
+  The `Assoc.' field shows which partition numbers (#1 to #4) or devices
+  (floppy drive A:, next hard disk symbolically named `D:') are associated
+  with each menu item. An arrow indicates which item will be automatically
+  selected after the defined timeout has passed.
+
+  The `Hide' field shows which partitions will be marked as hidden when you
+  choose to boot the desired OS. In general hiding partitions prevents most
+  OSes from accessing them. Only partitions with IDs 01, 04, 05, 06, 07, 0b,
+  0c, 0e, or 0f hex can be hidden.
+
+  The `Timeout' field shows the length of the period, after which the default
+  OS boots if no key is pressed (1 to 99 seconds). Zero means no timeout,
+  i.e., the loader waits for keyboard input forever.
+
+  The functions of the seven buttons on the right are described in the next
+  three sections.
+
+  The status/prompt line shows a short description of the currently active
+  field or button, a list of the currently available function keys,
+  confirmation and error messages. It's also the place for entering some
+  parameters from keyboard.
+
+  You can cycle between the fields and buttons using [Tab] and [Shift][Tab],
+  or move between them with arrow keys. To execute the function of the
+  currently highlighted button, press [Enter]. The highlighted letter in each
+  field's header or button name may be also used with the [Alt] key to
+  activate the field or button (e.g., [Alt][Q] for Quit).
+
+
+  4.4                 C O N F I G U R I N G  B O O T M G R
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  First, you should make a copy of your current boot loader and partition
+  table on a diskette (preferably the rescue diskette you created). It will be
+  needed if something goes wrong, or if you just decide to uninstall the
+  BOOTMGR boot loader and return to your previous system configuration. Choose
+  `Save MBR' and enter a filename, e.g., `a:\my_old.mbr' (without quotes).
+
+  Next, name your menu items. In the `Menu' field, enter the names under which
+  you wish your operating systems to appear in the startup menu. You can use
+  arrow keys, [Backspace] and [Del] for editing). Then specify which item
+  corresponds to which partition number or device in the `Assoc.' field.
+
+  For example, you may have the following partitions defined:
+
+  ± #³ID³Type      ³...
+  ±±±²²²²²²²²²²²²²²²²²²²
+  ± 1³06³FAT16B    ³...  with some sort of DOS, e.g., FreeDOS
+  ± 2³83³Linux     ³...  with some sort of Linux
+  ± 3³0B³FAT32     ³...  with MS Windows 9x
+  ± 4³05³Extended  ³...  containing DOS logical drives, Linux swap, etc.
+  ±±±²²²²²²²²²²²²²²²²²²²
+
+  You may wish then to have the following menu items:
+
+  ±±±²²²²²²²²²²±±²²²²²²²
+  ± <Floppy> ±± A:     ±
+  ± FreeDOS  ²² #1  <- ²
+  ± Linux    ²² #2     ²
+  ± Windows  ²² #3     ²
+  ±          ²²        ²
+  ±±±²²²²²²²²²²±±²²²²²²²
+
+  Hint: set default to the OS that you use most often. To minimize the number
+  of keystrokes needed to select an OS, place the most rarely used OS furthest
+  from the default one.
+
+  (In the above example, it is assumed that either you don't have a secondary
+  hard disk or just don't have anything bootable on it, so you can just delete
+  the `<NextHD>' item from the initially displayed default menu.)
+
+  You may set up to five menu items. As typically you don't have more than
+  three bootable primary partitions on your hard disk (because one slot in the
+  partition table is occupied by an extended partition), it should be enough
+  even with the `<Floppy>' and `<NextHD>' options.
+
+  You can return to default menu (`<Floppy>' and `<NextHD>') at any time with
+  the `Default' button.
+
+  Selecting the active partition isn't particularly important in most cases,
+  as the partition you boot from is made active; this selection is used only
+  when you choose to boot from floppy or another hard disk. Typically, you
+  should choose the partition associated with the default menu item (in the
+  above example, #1).
+
+  Sometimes you may wish to hide some partition(s) from the `eyes' of another
+  OS. In the example above, you may consider hiding the DOS partition when
+  booting into Windows; otherwise Windows will `pollute' the directories on
+  the DOS partition with its long filenames sooner or later, which cannot be
+  handled by many DOS disk management tools. To achieve this, go to the fourth
+  row in the `Hide' field (on the same level as `Windows' in the `Menu' field)
+  and press [1] (because the DOS partition is partition #1). Press [1] again
+  to cancel this hiding.
+
+  Remember that only specific partitions can be marked as hidden: in this
+  example, pressing key [2] will have no effect!
+
+  Finally, select your preferred timeout value either with the [+] and [-]
+  keys or by pressing [Space] and entering a number from 0 to 99 (choose zero
+  to disable the timeout function).
+
+  You can now install the BOOTMGR boot loader. Choose `Write MBR' and press
+  [B] when asked whether to install BOOTMGR, a generic bootstrap loader
+  (without any menu functionality, similar to one written by DOS FDISK) or to
+  update the partition table only, leaving the existing loader. Finally
+  confirm with [Enter] and choose to keep reserved NT Volume Bytes (clearing
+  them is only useful in rare cases when Windows NT/2K/XP cannot boot due to
+  changed hard disks configuration or partitioning, which is not related to
+  BOOTMGR; see Section 4.6).
+
+  If all the entered settings are correct, the BOOTMGR loader is written to
+  disk. If not, the installer complains about inconsistent settings.
+  Inconsistency means that one or more of the following rules have been
+  broken:
+
+  (*) Blank lines in the `Menu' field cannot intervene non-blank ones, and the
+      topmost line must not be blank. (The number of items displayed in the
+      startup menu will be equal to the number of non-blank lines here.)
+
+  (*) Each non-blank line has to have a partition (or device) associated.
+      Blank lines cannot have any association (use [F8] in `Menu' field to
+      remove the association).
+
+  (*) Neither the partition associated with any menu item, nor the partition
+      that will be marked active when booting from other device, cannot be
+      empty (unused, id 00).
+
+  In order to change your startup menu, run `bootmgr.com' again. It should
+  read, decode and display the previous settings from the Master Boot Record.
+  You can modify the settings and choose `Write MBR' again.
+
+  Remember that it is the best to uninstall BOOTMGR before any changes to
+  partition table (adding/removing partitions, installing new operating
+  systems). If you fail to do this, the associations in the BOOTMGR menu may
+  become broken and you will be unable to boot from any partition on your hard
+  disk, only from a floppy.
+
+
+  4.5                    R E M O V I N G  B O O T M G R
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Before any changes to the partition table, as adding/removing partitions,
+  installing new operating systems, you should uninstall the BOOTMGR boot
+  loader. Otherwise, the associations in the BOOTMGR menu may become broken
+  and you will be unable to boot from any partition on your hard disk, only
+  from a floppy.
+
+  To uninstall BOOTMGR, choose `Restore MBR' and enter the name of the file in
+  which you stored the previous contents of the Master Boot Record, e.g.,
+  `a:\my_old.mbr' (without quotes). Then select to restore the boot loader
+  code. Normally, you should not restore the NT Volume Bytes and partition
+  table: if you didn't do any changes to them since last save, you don't need
+  to; if you did changes, you mustn't, unless you are an expert and know
+  exactly what are you doing.
+
+  The contents of the MBR saved in the file (i.e., partition table and BOOTMGR
+  settings - if installed) is shown before you can decide if it will be
+  restored. This way you can use this option to view any saved MBR without
+  writing it to disk; note that all changes in partition table and boot menu
+  settings you made are lost when you choose `Restore MBR'.
+
+  If you lost your original MBR, BOOTMGR comes with a generic boot loader
+  which can be written under `Write MBR' option. It acts almost like the
+  standard DOS loader. In addition, it can use INT 13h extensions and displays
+  the current hard disk number.
+
+
+  4.6                   A D V A N C E D  F E A T U R E S
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  The installation and configuration program `bootmgr.com' provides a few
+  advanced features (rather for expert use). These include:
+
+  (*) Restoring a partition table saved in a file.
+
+  (*) Editing partition identifiers (mostly for hiding/unhiding them).
+
+  (*) Reordering entries in the partition table. You need to reorder entries
+      to allow multi-booting in some configurations (e.g., under Novell DOS/
+      OpenDOS/DR-DOS up to version 7.03, the bootable partition entry must be
+      placed before other primary DOS partitions).
+
+  (*) Clearing the reserved bytes, used by MS Windows NT/2K/XP to keep
+      information about drive letter assignments. In some cases, when physical
+      configuration or partitioning of hard disks is changed, Windows cannot
+      boot. Resetting the `Volume Bytes' cures this problem. To just clear
+      them without changing anything else, select `Write MBR' and `Keep
+      existing boot loader'.
+
+  (*) Erasing the two initial tracks (cylinder 0, heads 0 and 1) of a disk.
+      This is a destructive and unrecoverable operation, resulting in loss of
+      the partition table and, in typical configurations, initial sectors of
+      the first partition containing its important layout data. For most
+      software, a disk treated with this `Zap disk' function appears as a
+      fresh, unused disk with no partitions and no data. Note that this
+      function does not physically erase all sectors of a disk!
+
+  Booting from the secondary hard disk should be also considered an advanced
+  feature. Not all operating systems can start in such circumstances. DOS
+  systems will boot from primary partitions on the secondary disk only if
+  there is no primary DOS partition on the first hard disk (in such a case,
+  that one becomes C: and DOS searches for `config.sys' on the wrong drive).
+  In addition, some version of DOS (including MS-DOS 7 from Windows 9x and
+  earlier issues of Novell DOS/OpenDOS/DR-DOS) ignore the boot drive number
+  passed to them by boot loaders in the DL register. You need to adjust the
+  drive number in the DOS Boot Record manually in such a case.
+
+  If you have a bootable partition on the secondary (tertiary, etc.) hard
+  disk, you should install another copy of the BOOTMGR boot loader on it. This
+  way you can switch back and forth between both (or more) disks before
+  choosing the OS to boot. Use the `Change disk' button in the installation
+  utility to select a hard disk for viewing and editing.
+
+
+  5                                U S A G E
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  After the BOOTMGR boot loader is configured and installed, reboot your
+  system. The startup menu with the OS names that you entered will appear in
+  the middle of the screen. You will see also the current hard disk number and
+  a counter counting down the time remaining for making the decision.
+
+  You can move the black selection bar with cursor [Up] and [Down] keys. Press
+  [Enter] to boot the selected OS.
+
+  If the selected OS cannot be booted, you'll hear a beep. This may be caused
+  by an invalid boot record in the selected partition or a hard disk read
+  error (in other words, it shouldn't happen). If you get a beep when you
+  choose to boot from a floppy, just press [Enter] to retry (the drive motor
+  may not get up to the proper speed quickly enough).
+
+  Remember that it is the best to uninstall BOOTMGR before any changes to
+  partition table (adding/removing partitions, installing new operating
+  systems). If you fail to do this, the associations in the BOOTMGR menu may
+  become broken and you will be unable to boot from any partition on your hard
+  disk, only from a floppy.
+
+
+  6                     T E C H N I C A L  S U P P O R T
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Please visit `http://www.bttr-software.de/' for help or updates.
+
+
+  7                       V E R S I O N  H I S T O R Y
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+  18-MAR-2008
+
+    (*) allow hiding partitions with IDs 05 (EXT) or 0f hex (EXTLBA)
+
+  07-APR-2006
+
+    (*) added missing copyright line to legal.txt
+
+    (*) merged history.txt into bootmgr.txt
+
+    (*) reformated `License & Disclaimer' paragraph
+
+    (*) shortened `Technical Support' paragraph again
+
+    (*) reformated license paragraph for all source code files
+
+    (*) updated zip.mak
+
+  04-JAN-2006
+
+    (*) added `Zap disk' function to clear two initial tracks of a disk
+
+    (*) updated partition type list
+
+  18-FEB-2005
+
+    (*) infinite timeout option added to the boot menu
+
+    (*) the bootstrap loader no longer occupies the space used by undocumented
+        WinNT Volume Bytes, therefore compatibility with Windows NT/2K/XP is
+        improved
+
+    (*) the empty line between the title bar and boot menu has been removed to
+        avoid (we hope) the `which color is the selection bar?' confusion when
+        there are only two boot menu items, and also to reduce code size
+
+    (*) the installer can now restore and clear WinNT Volume Bytes
+
+    (*) the generic bootstrap loader (formerly in external MBR image file
+        STDLOAD.MBR) is now built into the installer
+
+    (*) the installer displays a warning at startup when MS Windows or another
+        multitasking environment is detected
+
+    (*) hard disks are now numbered starting from 1, not from 0
+
+    (*) small changes to the user interface, enhanced keyboard navigation
+
+    (*) compressed executable with aPACK
+
+    (*) simplified structure of sources with new Makefile
+
+    (*) documentation updated, shortened `Technical Support...' paragraph
+
+    (*) added URL file
+
+  19-OCT-2003
+
+    (*) fixed a bug that prevented booting from partitions located beyond 8th
+        Gbyte (thanks to Michael Andersson for reporting)
+
+    (*) changed CHS/LBA selection algorithm to work reliably with large disks
+        partitioned in NORMAL mode
+
+    (*) fixed minor problem with text cursor on Hercules with some buggy
+        system BIOSes
+
+    (*) function `Install -> Update partition table only' is now disabled when
+        a BOOTMGR boot loader is found on disk, in order to prevent problems
+        when the partition hiding table in the loader needs updating as well
+
+    (*) function `Restore MBR' of the installer now can be used for viewing
+        saved MBRs without actual writing them to disk
+
+    (*) function `Save MBR' now saves original MBR, ignoring any changes made
+        to the partition table
+
+    (*) installer has a slightly different look
+
+    (*) Makefiles adjusted for free Info-ZIP Zip
+
+  30-MAY-2003
+
+    (*) the boot loader can now dynamically hide FAT and NTFS partitions
+        depending on OS selection; the installer and documentation modified
+        accordingly
+
+    (*) status line in the installer made longer, the messages are now more
+        descriptive
+
+    (*) other minor changes to the documentation
+
+    (*) enhanced Makefiles
+
+  15-OCT-2002
+
+    (*) released initial public version
+
+
+  8                A D D I T I O N A L  I N F O R M A T I O N
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  BOOTMGR was created using Borland MAKE 3.6, DOS Navigator Plus's integrated
+  editor, DR-DOS DEBUG 1.51, Netwide Assembler (NASM) 0.98.39, as well as
+  information from books and internet resources.
+
+  This product uses the aPACK executable compressor,
+  Copyright (C) 1997-2000 by Joergen Ibsen, All Rights Reserved.
+  For more information, please visit: http://www.ibsensoftware.com/
+
+  Both the boot loader and installation/configuration utility are written
+  entirely in assembly language.
+
+  The author wants to thank Michael Andersson for testing BOOTMGR seriously,
+  reporting a bug, and beta-testing the resulting fix, and to Tommie Kuurstra
+  for providing information about the undocumented WinNT Volume Bytes.
+
+  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ END OF DOCUMENT ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
