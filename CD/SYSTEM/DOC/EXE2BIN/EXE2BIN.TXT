@@ -1,8 +1,0 @@
-EXE to BINary converter.
-Part of FreeDOS.
-
-Usage: EXE2BIN in_file[.exe] out_file[.bin]
-
-EXE2BIN is licensed under terms of the 
-OpenWatcom license.
-

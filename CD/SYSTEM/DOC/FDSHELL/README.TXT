@@ -1,1 +1,0 @@
-Modify dosshell.ini if wanted.

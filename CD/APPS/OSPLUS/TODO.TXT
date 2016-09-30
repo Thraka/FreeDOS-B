@@ -1,6 +1,0 @@
-WISHLIST
-========
-
-- MP3/Ogg Vorbis player for DJGPP, Linux and Win32 ports maybe
-
-- General improvements to make OSPlus Text Editor better :)
