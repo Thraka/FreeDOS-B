@@ -1,8 +1,8 @@
 # FreeDOS B
 
-**Creator:** [Ercan Ersoy](https://github.com/ercanersoy/)
+**Creator:** [Ercan Ersoy](https://github.com/ercanersoy)
 
-**Web Site:** http://bilgisayarcilik.github.io/FreeDOS-B/
+**Web Site:** http://bilgisayarcilik.github.io/FreeDOS-B
 
 This is a FreeDOS disturbition.
 
@@ -36,4 +36,4 @@ The CD image FreeDOS B.iso is live CD. The floppy boot.img is boot disk of FreeD
 
 ## How to Compile
 
-* FreeDOS B uses mkisofs. It is taken from Cobalt (https://github.com/corbindavenport/cobalt). You should in Linux for compiling. For compiling, you should run build.sh. mkisofs outputs FreeDOS_B.iso that is optical disc image file for FreeDOS B.
+* FreeDOS B uses mkisofs. It is taken from [Cobalt](https://github.com/corbindavenport/cobalt). You should in Linux for compiling. For compiling, you should run build.sh. mkisofs outputs FreeDOS_B.iso that is optical disc image file for FreeDOS B.
