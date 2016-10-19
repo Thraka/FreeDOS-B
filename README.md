@@ -22,6 +22,7 @@ The CD image FreeDOS B.iso is live CD. The floppy boot.img is boot disk of FreeD
 * LiloPwd
 * CMOSPWD
 * flashrom
+* RBPCI
 
 ## System Requirements
 
@@ -34,6 +35,8 @@ The CD image FreeDOS B.iso is live CD. The floppy boot.img is boot disk of FreeD
 
 * Native SATA inferance not supported.
 
-## How to Build
 
-* FreeDOS B uses mkisofs. You should in Linux for compiling. For compiling, you should run build.sh. mkisofs outputs FreeDOS_B.iso that is optical disc image file for FreeDOS B.
+
+## How to Build Disc Image
+
+* FreeDOS B uses mkisofs. You should in Linux for building image. For building image, you should run "build.sh". mkisofs outputs FreeDOS_B.iso that is optical disc image file for FreeDOS B.

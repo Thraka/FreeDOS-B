@@ -39,3 +39,9 @@ SVGA (for Blocek that is in FreeDOS)
 Known Issues:
 
 Native SATA inferance not supported.
+
+
+
+How to Build Disc Image:
+
+FreeDOS B uses mkisofs. You should in Linux for building image. For building, you should run "build.sh". mkisofs outputs FreeDOS_B.iso that is optical disc image file for FreeDOS B.
